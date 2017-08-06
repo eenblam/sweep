@@ -7,5 +7,3 @@ Objects:
 - Game
 - Board
 - Cell
-
-
