@@ -9,11 +9,11 @@ class Cell(object):
         self.revealed = False
 
     def __str__(self):
-        self.char = "@" if self.mine else str(self.neighbors())
+        self.char = "@" if self.mine else str(self.count_neighbors())
         if self.revealed:
             return self.char
         return "X"
 
-    def neighbors(self):
-        return self.board.neighbors(self.i, self.j)
+    def count_neighbors(self):
+        return self.board.count_neighbors(self.i, self.j)
 
