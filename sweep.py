@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-from ms import game
+from sweep import game
 
 def usage(err_msg):
     print(err_msg)
     print("Usage:")
-    print("ms <rows> <columns> [<probability>]")
+    print("sweep.py <rows> <columns> [<probability>]")
     sys.exit(1)
 
 def match_dimensions(args):
