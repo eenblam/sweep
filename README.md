@@ -1,23 +1,17 @@
-Objects:
+# Sweep.py
+To play, provide the number of rows and columns, respectively,
+as command line arguments.
 
-- CLI
-    - Debug mode?
-    - Board size
-    - Probability of mine in cell
-- Game
-- Board
-- Cell
+```bash
+$ sweep.py 4 6
+```
 
-## FSM
-Game object should be an FSM.
+By default, each cell has a 20% chance of being a mine.
+You can adjust this by passing a third argument between 0 and 1.
+For instance, to give each a cell a 55% chance of being a mine:
 
-- Start
-- Select
-    - Select (implement iteratively instead of recursively)
-    - Mine
-        - Start
-        - Exit
-    - Clear
-        - Start
-        - Exit
+```bash
+$ sweep.py 4 6 0.55
+```
 
+Instructions on how to play are given within the game.

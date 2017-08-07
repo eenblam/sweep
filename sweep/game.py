@@ -6,6 +6,7 @@ class Game(object):
         self.m = m
         self.n = n
         self.p = p
+        self.usage()
 
     def start(self):
         """Start a new game."""
@@ -18,7 +19,7 @@ class Game(object):
             print(self.board)
             command = GameCommand(self.m, self.n)
             if not command.valid:
-                command.input_error()
+                self.usage()
                 continue
 
             if command.action == 'quit':
@@ -54,7 +55,7 @@ class Game(object):
             elif command.action == 'quit':
                 self.exit()
             else:
-                command.input_error()
+                self.usage()
 
 
     def exit(self):
@@ -68,4 +69,10 @@ class Game(object):
         I.e. reset visibility but not mine distribution.
         """
         pass
+
+    def usage(self):
+        print('Please provide a coordinate of the form "<command> <row> <col>"')
+        print('where <command> is either "check" or "flag"')
+        print('and <row> < {} and <col> < {}.'.format(self.m, self.n))
+        print('Or, to quit, simply enter "quit".')
 

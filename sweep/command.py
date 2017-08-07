@@ -19,12 +19,6 @@ class GameCommand(object):
         else:
             return
 
-    def input_error(self):
-        print('Please provide a coordinate of the form "<command> <row> <col>"')
-        print('where <command> is either "check" or "flag"')
-        print('and <row> < {} and <col> < {}.'.format(self.m, self.n))
-        print('Or, to quit, simply enter "quit".')
-
     def match_quit(self):
         result = match('^quit$', self.input_string)
         if result is None:
