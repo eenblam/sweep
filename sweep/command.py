@@ -9,7 +9,7 @@ class GameCommand(object):
         self.action = None
         self.valid = False
 
-        self.input_string = raw_input().strip()
+        self.input_string = input().strip()
         if self.match_quit():
             return
         elif self.match_check():
@@ -52,7 +52,7 @@ class MenuCommand(object):
         self.action = None
         self.valid = False
 
-        self.input_string = raw_input().strip()
+        self.input_string = input().strip()
         if self.match_new():
             return
         elif self.match_quit():

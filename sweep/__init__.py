@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
 
-from game import Game
+from .game import Game
 
 def usage(err_msg):
     print(err_msg)

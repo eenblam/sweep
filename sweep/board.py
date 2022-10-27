@@ -1,5 +1,5 @@
-from cell import Cell
-from result import Result
+from .cell import Cell
+from .result import Result
 
 class Board(object):
     def __init__(self, m, n, p=0.2):

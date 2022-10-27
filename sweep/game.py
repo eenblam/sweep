@@ -1,5 +1,5 @@
-from command import GameCommand, MenuCommand
-from board import Board
+from .command import GameCommand, MenuCommand
+from .board import Board
 
 class Game(object):
     def __init__(self, m, n, p=0.2):
