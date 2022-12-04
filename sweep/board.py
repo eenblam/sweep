@@ -31,7 +31,7 @@ class Board(object):
         for x in offsets:
             for y in offsets:
                 if (x,y) == (0,0):
-                    continue 
+                    continue
                 a = i + x
                 b = j + y
                 if self.valid_position(a, b):
@@ -70,6 +70,11 @@ class Board(object):
         if target.revealed:
             return Result(message="Cell ({},{}) already revealed."
                     .format(i, j),
+                    code=0)
+
+        if target.flagged:
+            return Result(message="Cell ({},{}) is currently flagged. Unflag to check with \"flag {} {}\"."
+                    .format(i, j, i, j),
                     code=0)
 
         if target.mine:
