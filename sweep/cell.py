@@ -14,15 +14,20 @@ class Cell(object):
         fatal = '%'
         mine = '@'
         flag = 'F'
-        blank = 'X'
+        unknown = 'X'
+        mistake = '&'
 
         if self.fatal:
             return fatal
         if self.flagged:
+            if self.revealed and not self.mine:
+                # Not actually a mine AND end of game, so show the mistake
+                return mistake
+            # Otherwise, we're either a tentative flag OR a successful flag at end of game
             return flag
         if self.revealed:
             return mine if self.mine else str(self.count_neighbors())
-        return blank
+        return unknown
 
     def count_neighbors(self):
         return self.board.count_neighbors(self.i, self.j)

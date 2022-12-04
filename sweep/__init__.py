@@ -22,6 +22,7 @@ def usage(err_msg):
     print("F : a cell you've flagged. Flag again to remove.")
     print("@ : a mine")
     print("% : a cell you selected that contained a mine")
+    print("& : a cell you mistakenly flagged as a mine")
     sys.exit(1)
 
 def run():
