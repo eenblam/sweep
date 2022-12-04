@@ -18,6 +18,8 @@ class Game(object):
         while True:
             print(self.board)
             command = GameCommand(self.m, self.n)
+            # Blank line after command
+            print()
             if not command.valid:
                 self.usage()
                 continue
