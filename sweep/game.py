@@ -44,7 +44,7 @@ class Game(object):
         self.end()
 
     def end(self):
-        """End the game with a win."""
+        """End the game, and prompt user to restart or quit."""
         self.board._reveal_board()
         print(self.board)
         print('Enter "new" for a new game or "quit" to quit.')
