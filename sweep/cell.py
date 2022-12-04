@@ -31,13 +31,24 @@ class Cell(object):
         return self.board.valid_neighbors(self.i, self.j)
 
     def reveal(self):
+        # Guard against loops
+        if self.revealed:
+            return
+
         # Reveal self
         self.revealed = True
 
-        # Reveal neighbors if none are mines
+        # Reveal any zero-valued neighbors without mines:
+        for neighbor in self.valid_neighbors():
+            # Be sure neighbor isn't already revealed so we don't get caught in a loop!
+            if not neighbor.revealed and not neighbor.mine and not neighbor.count_neighbors():
+                neighbor.reveal()
+
+        # If this has a neighboring mine, don't reveal additional neighbors
         if self.count_neighbors():
             return
 
+        # Zero-valued, so show remaining non-mine neighbors
         for neighbor in self.valid_neighbors():
             if not neighbor.revealed:
                 neighbor.reveal()

@@ -58,7 +58,7 @@ class Board(object):
     def check(self, i, j):
         """Reveal position (i,j).
 
-        Also reveal any neighboring cells with counts of 0.
+        Also reveal any neighboring cells with counts of 0 (and their non-mine neighbors).
         """
         if not self.valid_position(i, j):
             # Return invalid input message
