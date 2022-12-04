@@ -1,6 +1,36 @@
 from .cell import Cell
 from .result import Result
 
+def left_pad_int_to_width(i, width):
+    """Returns str repr of i, padded with spaces to <width>."""
+    assert width > 0
+    s = str(i)
+    m = len(s)
+    assert m <= width
+    diff = width - m
+    return " " * diff + s
+
+def create_board_header(board_height, board_width):
+    """Create rows of column indices to be printed above board.
+
+    Index rows are offset by left pad to account for row indices.
+    Each index is printed vertically, bottom-aligned. Example:
+    ...      1 1 1...
+    ...7 8 9 0 1 2...
+    """
+    pad_size = len(str(board_width))
+    matrix = [["" for _ in range(board_width)] for _ in range(pad_size)]
+    for i in range(board_width):
+        # for every column, write its index to i-th matrix column
+        padded_int = left_pad_int_to_width(i, pad_size)
+        for j, character in enumerate(padded_int):
+            matrix[j][i] = character
+
+    # pad is offset to account for padded row indexes plus two blank spaces
+    pad = ' ' * (len(str(board_height)) + 2)
+    return '\n'.join(pad + ' '.join(row) for row in matrix) + '\n'
+
+
 class Board(object):
     def __init__(self, m, n, p=0.2):
         self.m = m
@@ -13,6 +43,8 @@ class Board(object):
                 new_cell = Cell(self, i, j, p)
                 self.num_mines += new_cell.mine
                 self.board[i][j] = new_cell
+
+        self.board_header = create_board_header(m, n)
 
     def count_neighbors(self, i, j):
         # Check within bounds
@@ -43,9 +75,21 @@ class Board(object):
         return True
 
     def __str__(self):
-        return  "\n".join(
-                " ".join(str(cell) for cell in row)
+        # Before support for printing indices:
+        #board =  "\n".join(
+        #        " ".join(str(cell) for cell in row)
+        #        for row in self.board)
+        #return board
+
+        pad_size = len(str(self.m))
+        # Join each row's cells into one string
+        rows = (' '.join(str(cell) for cell in row)
                 for row in self.board)
+        # Prepend left-padded index to left of row
+        indexed_rows = (left_pad_int_to_width(i, pad_size) + '  ' + row
+                       for i,row in enumerate(rows))
+        board = '\n'.join(indexed_rows)
+        return self.board_header + '\n' + board
 
     def _reveal_board(self):
         """Debug mode for board."""
