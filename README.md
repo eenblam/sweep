@@ -6,7 +6,7 @@ as command line arguments.
 For example, to play a field of dimension 4x6:
 
 ```bash
-$ sweep.py 4 6
+$ ./sweep.py 4 6
 ```
 
 By default, each cell has a 20% chance of being a mine.
@@ -14,10 +14,22 @@ You can adjust this by passing a third argument between 0 and 1.
 We can extend the above example so that each cell has a 55% chance of being a mine:
 
 ```bash
-$ sweep.py 4 6 0.55
+$ ./sweep.py 4 6 0.55
 ```
 
 Instructions on how to play are given within the game.
+
+## Usage
+You can just clone the repo and run the game:
+
+```bash
+git clone https://github.com/eenblam/sweep
+cd sweep
+./sweep 5 5
+```
+
+If you *really* want to, you can run `python3 setup.py install`
+to install the game to your environment, then run it as `sweep`.
 
 ## Example Play
 
